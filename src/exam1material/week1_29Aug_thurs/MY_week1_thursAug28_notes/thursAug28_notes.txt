@@ -43,10 +43,12 @@ else {
     statements3;
 }
 
-
+--> when is the first (if) condition false?
+    x >= 3 && y <= 44
 
 --> is it possible for "statements2" to execute?7
-
+No, because the if condition must be true for the else if statement to be true.
+The else if won't even be evaluated if the first if evaluates to true
 
 
 
@@ -63,16 +65,21 @@ knave: each full statement must be false
 You meet three inhabitants: Sarah, Bill and Mae.
 
 Sarah tells you that only a knave would say that Bill is a knave.
+    - Sarah: Bill is a knight
 Bill claims that it's false that Mae is a knave.
+    - Bill: Mae is a knight
 Mae tells you, "Bill would tell you that I am a knave."
+    - 
 
 What types are Sarah, Bill, and Mae?
 
 
 (How might we simplify everything?)
 
-
-    
+Suppose Sarah is a knight. Bill would have to be a knight, and from his statement Mae would have to be a knight.
+    Mae's statement would be a lie which is impossible
+Suppose instead Sarah is a knave. By their statements, Bill would have to be a knave, and Mae would have to be a knave.
+    Mae's statement works since Bill would say a lie and say she's a knight, however she said he would call her a knave
 
 
 ////////////////////////////////////
@@ -89,7 +96,11 @@ Unicorn says: "Yesterday was one of my lying days, too."
 
 What day is it?
 
-
+Sunday? No, Lion couldn't say that.
+Tuesday/Friday/Wednesday/Saturday? No, neither could say that.
+    Whoever is lying lied the day before but should still be lying about it.
+Monday? No, Unicorn couldn't say that.
+Thursday? yes
 
 ////////////////////////////////
 
@@ -108,7 +119,9 @@ The second one says: "I'm Tweedledee."
 
 Which is which? What day is it?
 
+Any day but Sunday, one lies and one tells the truth. Would both give smae name.
 
+Must be Sunday, since they say differnet things, both are telling the truth
 
 
 
@@ -137,12 +150,20 @@ You don't know what day it is, but are sure that it isn’t
 The first one says: "Tweedledee owns the rattle."
 The second one says: "I'm Tweedledee!"
 
-Who gets the rattle?
+Who gets the rattle? The first twin
+
+Suppose the first twin is telling the truth. Then Tweedledee owns the rattle. The second twin would be lying, and must be Tweedledum. Then Tweedledee would
+be the first twin. We should give the rattle to the first twin
+
+Suppose first twin is lying. Tweedledum owns the rattle. The second twin is telling the truth, and must be Tweedledee. Then Tweedledee dumb must be the first twin
+and we must give the rattle to the first twin
 
 Who is who?
-
+Not enough information to tell
 
 ///////////////////////////////////////////
+
+(Do for practice)
 
 Based on Shakespeare's "Merchant of Venice".
 
@@ -187,16 +208,22 @@ Cheryl privately tells Bernard her birthday day (number).
 Albert says: "I don't know when Cheryl's birthday is,
     but I know Bernard doesn't know too."
 
+Cannot be May, or June because they have unique numbers(days) and Albert is sure Bernard doesn't know the date
+
 Bernard says: "At first I didn't know when Cheryl's
     birthday is, but now I do."
+
+Cannot be 14th, because Bernard couldn't know the date if it was as 14 was on July and August
 
 
 Albert says: "Then I also know when Cheryl's birthday is."
 
+It must be July 16th as because Albert can only be certain if the month he was given was July because there'd only be one date left July 16th
+
 
 When is it?
 
-
+Her birthday is July 16th
 
 
 ///////////////////////////////////
@@ -236,28 +263,28 @@ AND:
 
 p q  #  p ∧ q
 --------------
-T T  #    
-T F  #    
-F T  #     
-F F  #    
+T T  #    T
+T F  #    F
+F T  #    F
+F F  #    F
 
 
 OR:
 
 p q  #  p ∨ q
 --------------
-T T  #    
-T F  #    
-F T  #    
-F F  #    
+T T  #    T
+T F  #    T
+F T  #    T
+F F  #    F
 
 
 NOT:
 
 p  # ¬p
 --------
-T  # 
-F  # 
+T  #  F
+F  #  T
 
 ////////////////////////////////////////////////
 
@@ -275,16 +302,16 @@ Otherwise we have not.
 
 p q  #  p → q
 --------------
-T T  #    
-T F  #      
-F T  #    
-F F  #     
+T T  #    T
+T F  #    F  
+F T  #    T - Vacuasly true
+F F  #    T - Vacuasly true
 
 /////////////////////////////////////////
 
 How does the implies operator relate to programming?
 
-
+if, conditional statemnets
 
 //////////////////////////////////////////
 
