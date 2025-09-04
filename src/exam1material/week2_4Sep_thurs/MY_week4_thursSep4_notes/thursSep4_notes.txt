@@ -21,6 +21,7 @@ Example: another parse tree
 
 p ∧ q ∧ r → ¬p ∨ q → r
 
+top-level operator: Leftmost Implies
 
 
 Example: another circuit
@@ -58,11 +59,13 @@ z != 7 && str.contains(sub)
 
 
 --> what are the propositional atoms?
-
+p: z == 7
+q: str.contains(sub)
 
 
 --> express in propositional logic
-
+NOT p AND q
+¬p ∧ q
 
 
 ////////////////////////////////////////
@@ -73,20 +76,23 @@ You can't enroll for the course if you haven't taken the prerequisite.
 
 
 --> what are the propositional atoms?
-
+p: Can enroll for course
+q: You've taken the prerequisite
 
 
 --> translate to propositional logic:
 
 really saying:
-
+¬p → ¬q
 
 
 
 
 What is the *contrapositive* of our statement?
 
+p → q
 
+if you haven't taken the prerequisite, then you can't enroll for the course
 
 
 
@@ -104,9 +110,14 @@ if (x <= 2 || y >= 0) {
 
 Propositional atoms?
 
+p: x <= 2
+q: y >= 0
+r: z == 17
+s: answer: 25
 
 Translation? (if ... then ...)
 
+(p ∨ q) ∧ ¬r → 2
 
 //////////////////////////////////
 
@@ -118,11 +129,11 @@ q: I can drive a car
 
 1) If I am at least 16 years old, then I can drive a car.
 
-
+p →  q
 
 2) I'm not at least 16 years old or I can drive a car.
 
-
+¬p ∨ q 
 
 --> are they saying the same thing?
 
@@ -131,7 +142,7 @@ q: I can drive a car
 
 --> could we PROVE it? (equiv1.logika, equiv2.logika)
 
-
+For every possible truth assignmaent, the 2 statements have the same output
 
 
 
@@ -155,7 +166,7 @@ if (a == 4 || a == 5) {
 How could we express the NEGATION
 (i.e., what condition would be true for the "else")?
 
-
+if(a != 4 || a != 5)
 
 
 ///
@@ -175,14 +186,14 @@ How could we express the NEGATION
 
 DeMorgan's laws in propositional logic:
 
-¬(p ∨ q) is equivalent to... 
+¬(p ∨ q) is equivalent to...  ¬p ∧ ¬q
 
-¬(p ∧ q) is equivalent to... 
+¬(p ∧ q) is equivalent to... ¬p ∨ ¬q 
 
 
 --> how can we prove the first of DeMorgan's laws?
 
-
+For every possible truth assignmaent, the 2 statements have the same output
 
 
 
@@ -210,6 +221,11 @@ if ((y >= 4 && num != 14) || x > 0) {
 
 negate it:
 
+if(!(y >= 4 && num != 14) && x <= 0)
+
+if((y < 4 || num == 14) && x <= 0)
+
+
 
 ///////////////////////
 
@@ -227,23 +243,36 @@ p → q ≡  ¬q → ¬p                    (contrapositive)
 p → q ≡  ¬p ∨ q                     (can turn implies into an or)
 
 
-associative laws
+associative laws - Can move the parenthesis without changing result of the equation
 
     (2 + 3) + 5 = ?
 
-    (p ∧ q) ∧ r     vs      ???   
+    (p ∧ q) ∧ r     vs      p ∧ (q ∧ r)   
 
 
-    (p → q) → r     vs      ???
+    (p → q) → r     vs      p → (q → r)
 
     how to show logically equivalent? 
 
+    Implies is NOT associative
+
     how to show NOT equivalent? 
 
+    find ONE truth assihnment where the 2 statements have different output
 
+    p = F
+    q = T
+    r = F
+
+    They are not equivalent because the 2 statements have differnt output on the truth aissignments above
 
 commutative laws 
 
+p ∧ q   vs  q ∧ p
+
+p ∨ q   vs  p ∨ q
+
+p → q   vs  q → p   Not Commutative
 
 
 --> you may still be asked to demonstrate these with
@@ -255,11 +284,12 @@ commutative laws
 Summary of equivalence.
 
 How do we prove two statements ARE equivalent?
-
+    2 truth tables. Show that for every truth assignment
+    they have the same output
 
 
 How do we prove two statements are NOT equivalent?
-
+    Find 1 truth assignment which is a counterexample
 
 
 
@@ -270,28 +300,38 @@ What is equivalent to:
 ¬p → q
 
 
+¬q → p
+p ∨ q
+
 //////////////////////////
 
 Satisfiability.
 
-- definition: 
+- definition:
+    A logical statement is satisfiable if I can find a truth assignment where the statement outputs are true
 
 
 - what kind of statement is satisfiable? what kind is not?
 
+    satisfiable: contingent, tautology
+    not satisfiable: contradictory
 
 - is this satisfiable?
 
     (p ∨ ¬q) ∧ (q ∨ ¬r) ∧ (r ∨ ¬p)
 
+yes
 
+p = T
+q = T
+r = T
 
+Makes statement output true
 
+to show a statement is satisifiable: One truth assignment
 
-
-to show a statement is satisifiable: 
-
-to show a statement is NOT satisfiable: 
+to show a statement is NOT satisfiable: The entire truth table is contradictory
+(outputs false for every truth assignmaent)
 
 
 ////////////////////////////
