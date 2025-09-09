@@ -72,7 +72,7 @@ can we solve a problem in polynomial time?
 
 can we check a solution to a problem in polynomial time?
 
-
+not be exponential time, it would be polynomial time
 
 ////////////////////////
 
@@ -94,8 +94,11 @@ An argument is of the form:
 
 --> When is an argument considered valid?
 
+implues statement, only false when T -> F
 
+Argument considered invalid if all the premises are true but the conclusion is not
 
+Argument considered valid anytime all premises are true, the conclusion is true
 
 ///////////////////////////////////////
 
@@ -118,15 +121,23 @@ I want to prove:
 
 Propositional atoms:
 
-
+p: I'm in the cs department
+q: I'm in the ECE department
+r: I can log into the cs lab computers
 
 Translations:
 
+Premises:
+p ∨ q
+¬ q
+p → r
 
+Conclusion:
+r ∧ p
 
 --> How to prove with a truth table?
 
-
+Find truth assignments where all 3 premises are true, make sure the conclusion is true for those truth assignments
 
 
 ////////////////////////////////
@@ -171,7 +182,8 @@ We wish to prove:
 
 When is an argument invalid?
 
-
+Find one truth assignment where all truth assignments where true
+but the output was false, broke "->" promise
 
 
 Example:
@@ -185,14 +197,22 @@ Proposed conclusion:
 
 1) Translate to propositional logic
 
+p: It is sunny
+q: I wear sunscreen
 
+Premises:
+p -> q
+q
 
-
+Conclusion:
+p
 
 2) How can we show it is invalid?
 
+conterexample:
+p = F, q = T
 
-
+makes both premises true but conclusion false
 
 ////////////////////////////////
 
@@ -209,20 +229,23 @@ Showing arguments are invalid in Logika
 ////////////////////////////
 
 Does it matter if the conclusion is true when 
-    the premises aren't?
+    the premises aren't? NO
 
 
 Does it matter if one premise is true when the other isn't?
+    No, only care when all premises are true
 
 Does it matter if the conclusion is false when some 
     (but not all) of the premises are true?
+    
+    No, only care when EVERY premise is true
 
 ////////////////////////////
 
 Downside of proofs with truth tables?
 
-
-
+As variables increase, exponentially more truth assignments to check
+tedius and just not realistic for morre invloved statements
 
 
 
@@ -342,7 +365,7 @@ and also:
 What could we claim with AndI?
 
 
-
+(a ∨ ¬b) ∧ (c → d)
 
 
 //////////////////////////////////
@@ -380,6 +403,7 @@ Justifications so far:
 
 
 --> what do these look like in programming?
+    Methods
 
 --> what do you think they're actually doing?
 
