@@ -30,7 +30,10 @@ Proving two statements are equivalent with deduction?
 statement1
 statement2
 
+Proof 1: statement1 |- statement2
 
+
+Proof 2: statement2 |- statement1
 
 
 ////////////////////////////////
@@ -56,6 +59,10 @@ if (extraCredit == true || grade < 90) {
 --> how does the distributive law tell us we can rewrite 
     this?
 
+    if( extraCredit == true || (grade >= 80 && grade < 90) )
+    {
+        //do stuff
+    }
 
 ////////////////////////////////
 
@@ -76,6 +83,8 @@ Example:
 if (x > 5) {
     y = 17;
 }
+
+We can conclude that y = 17
 
 ///////////////////////////////
 
@@ -127,9 +136,12 @@ See Canvas announcement for list of topics.
 How to prove two propositional logic statements are 
 equivalent?
 
-    Approach 1:
+    Approach 1: Truth Tables(2)
+        For each truth assignment, both statements have the same output
 
-    Approach 2:
+    Approach 2: Deduction (2)
+        statement1 |- statement2
+        statement2 |- statement1
 
 
 
@@ -137,20 +149,35 @@ equivalent?
 How to prove propositional logic statements are 
 NOT equivalent?
 
-
+Find 1 counterexample, a truth assignment where the outputs differ
+    Can't use deduction
 
 
 What is satisfiability? 
 
+Can find there exists at least 1 truth assignment that makes the statement
+    output true.
+
+ARE Satisfiable: Contigent, and Tautology
+Not Satisfiable: Contradictory
+
+Prove Satisfiable: 1 truth assignment that outputs true, could be a whole truth table
+Prove NOT SatisfiableL Full truth table, should be contradictory
 
 
 - Determining whether an argument is valid or invalid
     (what is an argument?)
     valid: 
+        Every time all the premises are true then the conclusion is also true
 
     how prove valid?
+        1) Make a combined truth table, make sure every truth assignment that makes all premises
+        true also makes the conclusion true
+
+        2) Deduction
 
     how prove invalid?
+        Find 1 truth assignment that makes all premises true, but the conclusion false
 
 
 /////////////////////////////////////////
