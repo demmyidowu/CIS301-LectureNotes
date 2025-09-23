@@ -10,6 +10,14 @@ import org.sireum.justification.natded.prop._
       Proof(
       1 (  p __>: r   ) by Premise,
       2 (  q __>: r   ) by Premise,
+      3 SubProof(
+        4 Assume ( p | q ),
+        5 SubProof(
+          6 Assume ( p ),
+          7 
+        )
+        
+      )
 
     )
   )
