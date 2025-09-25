@@ -1,7 +1,7 @@
 Exam 1 discussion.
 
-Average: 76/100
 High: 99/100 (2 students)
+Average: 76/100
 
 A (90-100): 25 students (great!!)
 B (80-89): 19 students
@@ -10,6 +10,19 @@ D (60-69): 11 students
 F (below 60): 13 students
 
 
+Discuss some exam problems.
+
+Midterm exams category - x%
+    Exam 1
+    Exam 2
+    Exam 3
+    "Midterm equivalent from final"
+
+Final exams category - y%
+    Final 
+
+
+///////////////////////////////
 
 HW 4 will be posted after class, due Tuesday, September 30
 
@@ -25,12 +38,15 @@ How to get more details?
 
 /////////////////////
 
+See HW 4 starter problem - comment of sequent at top
+
+/////////////////////
+
 Today:
 - Continue implies rules
 - Begin negation rules
 
 /////////////////////
-
 
 Reminder: implies-elimination, ImplyE
 
@@ -80,7 +96,7 @@ always do?
 
 
 ImplyI examples:
-impI1.sc, impI2.sc, imp3.sc.
+impI1.sc, impI2.sc, impI3.sc.
 
 
 //////////////////////////
@@ -134,6 +150,10 @@ a SubProof(
     c ( F ) by Justification
 ),
 d ( ¬p ) by NegI(a)
+
+///////////////////////////
+
+<--- stopped here, will continue on Thursday
 
 ///////////////////////////
 
