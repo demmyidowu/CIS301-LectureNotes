@@ -29,8 +29,8 @@ Statements:
 
 HasChocolate(PayDay) V ContainsPeanuts(KitKat)
 
-    translation? 
-    true or false?
+    translation? Payday has chocolate or KitKat has peanuts
+    true or false? false
 
 
 ///
@@ -38,8 +38,10 @@ Domain: Snickers, Kit Kat, Skittles, Pay Day, Starburst
 
 ¬(∀ x (HasChocolate(x) → ContainsPeanuts(x)))
 
-    translation? 
-    true or false? 
+(Without Negation - All candy with cocholate also contains peanuts)
+
+    translation? Not all candy with chocolate contains peanuts
+    true or false? true (b/c KitKat has chocolate but no peanuts)
 
 
 
@@ -48,8 +50,8 @@ Domain: Snickers, Kit Kat, Skittles, Pay Day, Starburst
 
 ∀ x (¬ContainsPeanuts(x))
 
-    translation? 
-    true or false? 
+    translation? All candy doesn't have peanuts
+    true or false? false (Payday, Snickers)
 
 
 ///
@@ -57,34 +59,41 @@ Domain: Snickers, Kit Kat, Skittles, Pay Day, Starburst
 
 ¬(∃ x IsBrown(x))
 
-    translation? 
-    true or false? 
+(Without Negation - There is a candy that is brown)
+
+    translation? There's no candy that is brown
+    true or false? false (KitKat, Snickers both brown)
 
 ///
 Domain: Snickers, Kit Kat, Skittles, Pay Day, Starburst
 
 ∃ x ¬IsBrown(x)
 
-    translation? 
-    true or false? 
+    translation? There is a candy that is not brown
+    true or false? true (Starburst, Skittles)
 
 ///
 Domain: Snickers, Kit Kat, Skittles, Pay Day, Starburst
 
 ∃ x (HasChocolate(x) → ContainsPeanuts(x))
 
-    translation?
-    true or false? 
+    translation? 
+        There is a candy and if that candy has chocolate then it contains peanuts
+
+    (HasChocolate(Snickers) -> ContainsPeanuts(Snickers)) OR ... OR ((HasChocolate(Starburst) -> ContainsPeanuts(Starburst)))
+
+
+    true or false? true (Snickers, and Starburst/Skittles doesn't have chocolate - Implies being vacously true)
 
 
 
 ////////////////////////
 
-For all: usually connect with...→
+For all: usually connect with...  →
 
 
 
-There exists: usually connect with...⋀
+There exists: usually connect with...  ⋀
 
 
 
@@ -92,29 +101,31 @@ There exists: usually connect with...⋀
 
 Evaluating predicate logic statements
 
+Our domain is k1...kn
+
 1) ∀ x P(x)
-    true when: 
-    false when: 
+    true when: P(k) is true for every k in our domain
+    false when: We can find P(k) false for any k 1 in our domain
 
 2) ∃ x P(x)
-    true when: 
-    false when: 
+    true when: P(k) is true for at least 1 k in our domain
+    false when: P(k) is false for every k in our domain
 
 3) ¬(∀ x P(x))
-    true when: 
-    false when: 
+    true when: P(k) is false for at least 1 k in our domain
+    false when: P(k) is true for every k in our domain
 
 4) ¬(∃ x P(x))
-    true when: 
-    false when: 
+    true when: P(k) is false for every k in our domain
+    false when: P(k) is true for at least 1 k in our domain
 
 5) ∀ x ¬P(x)
-    true when: 
-    false when: 
+    true when: P(k) is false for all k in our domain
+    false when: P(k) is true for at least 1 k in our domain
 
 6) ∃ x ¬P(x)
-    true when: 
-    false when: 
+    true when: P(k) is false for at least 1 k in our domain
+    false when: P(k) is true for every k in our domain
 
 
 /////////////////
@@ -127,20 +138,26 @@ What do these mean in English? Are they true?
 
 ∀ n ∃ m (n^2 < m)
 
+    The square of every integer is less than some other integer
 
-
+    True. Whatever n is, choose m = n^2 + 1 and it will be an integer bigger than 1
 
 
 ∀ x ∃ y (x == y^2)
+    All integers are perfect squares
 
+    False. 3 is an integer and it isn't a perfect square
 
 
 ∀ n ∃ m (n^2 == m)
+    The square of all integers is also an integer
 
-
+    True. (Intergers are closed under multiplication)
 
 ∃ m ∀ n (n^2 == m)
-   
+   There is 1 number that equals the square of all other intergers
+
+   False.
 
 
 /////////////////////////
@@ -155,19 +172,24 @@ Write the following in predicate logic (Domain: ℤ):
 
 The sum of two negative integers is negative
 
+2 quantifiers (for 2 variables)
 
+∀ n ∀ m (n < 0 ⋀ m < 0 → n + m < 0)
 
-
-
+True.
 
 
 The difference of two positive integers is
 not necessarily positive
 
+∃ n ∃ m (n > 0 ⋀ m > 0 ⋀ n - m <= 0)
+
+OR:
+
+¬(∀ n ∀ m (n > 0 ⋀ m > 0 → n - m > 0))
 
 
-
-
+True. (n = 5, m = 20 , 5-20 is <= 0)
 
 /////////////////////////
 
@@ -188,8 +210,8 @@ Equivalence: DeMorgan's law (part 1).
 suppose our domain is k1 through kn
 
 
-¬(∃ x P(x)) is  equivalent to...
-
+¬(∃ x P(x)) is  equivalent to... ¬(P(k1) ⋁ ... ⋁ P(kn))
+which is: ∀ x ¬P(x) 
 
 /////////////////////////
 
@@ -222,9 +244,9 @@ Apply DeMorgan's laws: example
 or outside a statement with logical connectives
 
     Reminder:
-        p → q is equivalent to (OR statement): 
-        ¬(p ⋀ q) is equivalent to: 
-        ¬(p ⋁ q) is equivalent to: 
+        p → q is equivalent to (OR statement): (¬p ⋁ q)
+        ¬(p ⋀ q) is equivalent to: ¬p ⋁ ¬q
+        ¬(p ⋁ q) is equivalent to: ¬p ⋀ ¬q
 
 ///
 Domain: students
@@ -242,9 +264,15 @@ All prize-winners were 5th graders
 
 Translation: 
 
-Negation: 
+∀ x (wonPrize(x) → in5th(x))
 
-Translation of negation: 
+Negation: ¬(∀ x (wonPrize(x) → in5th(x)))
+
+∃ x ¬(wonPrize(x) → in5th(x))
+∃ x ¬(¬wonPrize(x) ⋁ in5th(x))
+∃ x wonPrize(x) ⋀ ¬in5th(x)
+
+Translation of negation: There is a prize winner who wasn't a 5th grader
 
 ///
 
@@ -252,9 +280,16 @@ A 5th grade prize winner isn't friends with anyone
 
 translation: 
 
+∃ x ∀ y (wonPrize(x) ⋀ in5th(x) ⋀ ¬(friendsWith(x, y)))
+
 negate: 
+¬(∃ x ∀ y (wonPrize(x) ⋀ in5th(x) ⋀ ¬(friendsWith(x, y))))
+∀ x ∃ y ¬(wonPrize(x) ⋀ in5th(x) ⋀ ¬(friendsWith(x, y)))
+∀ x ∃ y ¬(wonPrize(x) ⋀ in5th(x)) ⋁ friendsWith(x, y)
+∀ x ∃ y wonPrize(x) ⋀ in5th(x) → friendsWith(x, y)
 
 translation of negation: 
+    All 5th grade prize winners are friends with someone
 
 ////////////////////////////////////
 
