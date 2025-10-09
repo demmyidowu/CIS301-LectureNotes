@@ -18,23 +18,54 @@ HW 5 comments:
 What does that tell us about A and B?
 
     Common mistake:
+        B is the empty set
+        B = A
+
+    B is actually a subset of A
 
 
 6. Suppose A ⋂ B = A for two sets A and B.
 What does that tell us about A and B?
 
     Common mistake:
-
+        A = B
+        
+    A is actually a subset of B
 
 
 7 (a). If A ⋃ C = B ⋃ C, must A = B?
 
+Bad Counterexample
+    A = {4}
+    B = {2}
+    C = {1, 2, 3}
 
+A ⋃ C = {1, 2, 3, 4}
+B ⋃ C = {1, 2, 3}
 
+Good Counterexample
+    A = {4}
+    B = {}
+    C = {4}
 
+A ⋃ C = {4}
+B ⋃ C = {4}
+
+The unions are the same but A and B are different
 
 7 (b). If A ⋂ C = B ⋂ C, must A = B?
 
+Want Counterexample, need A ⋂ C = B ⋂ C to be true
+but A not equal to B
+
+A = {1}
+B = {2}
+C = {3}
+
+A ⋂ C = {}
+B ⋂ C = {}
+
+Intersections both the empty set but A doesn't equal B
 
 ////////////////////
 
@@ -66,7 +97,7 @@ Examples -- are the following arguments valid?
 Premises: ∀ x (P(x) → Q(x)), ∃ x P(x)
 Conclusion: ∃ x Q(x)
 
-Valid or not? 
+Valid or not? yes, Whoever my P is, that individual will also be Q
 
 
 ///
@@ -74,13 +105,15 @@ Valid or not?
 Premises: ∀ x P(x) : everyone in my domain is P-ish
 Conclusion: ∃ x P(x): there is someone in domain who is P-ish
 
-Valid or not? 
+Valid or not? Invalid. Not true for an empty domain
 
 /////////////////////////////////
 
 soundness ?
+    All arguments proved with deduction were actually true
 
 completeness ?
+    All true arguments can be proved with deduction
 
 /////////////////////////////////
 
@@ -113,7 +146,7 @@ In Logika, ∃ x P(x) is written as:
 
 
 
---> what is "T"?
+--> what is "T"? My domain
 
 
 Settings->Command Palette->Tasks (run task)->Sireum slang template->
@@ -219,16 +252,16 @@ First: consider these two statements:
 
 are they equivalent?
     ∀ x (P(x) ⋀ Q(x))  - translation?
-
+        Everyone is both P and Q
 
 
     (∀ x P(x)) ⋀ (∀ x Q(x)) - translation?
-
+        Everyone is P and Everyone is Q
 
 
 
 how would we defend our position? 
-
+    2 proofs, 
 
 
 //////////////////////////////////

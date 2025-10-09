@@ -55,7 +55,14 @@ import org.sireum.justification.natded.prop._
     )
     Proof(
       1 (  ∀((x: T) => P(x)) & ∀((x: T) => Q(x))  ) by Premise,
-      
+      2 ( ∀((x: T) => P(x)) ) by AndE1(1),
+      3 ( ∀((x: T) => Q(x)) ) by AndE2(1),
+      4 Let((random: T) => SubProof(
+        5 ( P(random) ) by AllE[T](2),
+        6 ( Q(random) ) by AllE[T](3),
+        7 ( P(random) & Q(random) ) by AndI(5, 6)
+      )),
+      8 ( ∀((x: T) => (P(x) & Q(x))) ) by AllI[T](4)
     )
   )
 }
