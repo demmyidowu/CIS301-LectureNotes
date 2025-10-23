@@ -18,20 +18,25 @@ Those would be great practice for next exam -- the proof files are in week9_21Oc
 Soundness and completeness of predicate logic.
 
 
-Soundness: definition?
+Soundness: definition? Everything that we can prove with our proof system is actually true
 
-    propositional:
+    propositional: yes
 
-    predicate logic:
+    predicate logic: yes
+
+    (Same for any proof system)
 
 
+Completeness: definition? Can use our proof system to prove anything that is true
 
+    propositional: yes
 
-Completeness: definition?
+    predicate logic: no
 
-    propositional:
+        Premise: All x P(x)
+        Conclusion: Exists x P(x)
 
-    predicate logic:
+        - Not true when domain is empty
 
 
 
@@ -46,10 +51,10 @@ Same argument might be VALID in one domain and INVALID in another
 Domain with integers with operations like +
 
 
-All integers? 2 + 3 = ?
+All integers? 2 + 3 = 5
 
 
-Subset (0,1,2,3,4) of integers. 2 + 3 = ?
+Subset (0,1,2,3,4) of integers. 2 + 3 = 0
 
 
 
@@ -88,7 +93,7 @@ Try it out first.
 
 Have we proved it yet?
 
-
+NO
 
 ///////////////////////////////////////////
 
@@ -106,11 +111,16 @@ The induction domino effect:
 
 
 What is this saying?
-    P(1)? 
+    P(1)? Base case. Prove that my claim holds for n = 1
 
-    ∀ k (P(k) → P(k+1))? 
+    ∀ k (P(k) → P(k+1))? Inductive Step. For any natural number k, if the claim holds for k, then 
+                        it holds for k + 1
 
+                        Pick a random individual in your domain (k).
+                            Assume P(k)
+                            Try to prove P(k+1)
 
+    ∀ n P(n) ? for all natural numbers the claim holds
 
 Putting it all together:
 
@@ -139,6 +149,28 @@ We want to prove that for any positive integer n:
 
 Proof by induction.
 
+Base Case. We must prove that our claim holds for the first positive integer (n = 1)
+    We have that: 1 = 1*(1+2)/2
+    The Base Case Holds.
+
+Inductive Step. We assume the inductive hypothesis -- that our laim holds for some fixed positive integer k
+    We must show that our claim holds for k+1
+
+    If our claim holds for k then we have:
+        1 + 2 + ... + k = k(k+1)/2
+
+    To prove our claim holds for k + 1, we must show:
+        1 + 2 + ... + k + k+1 = (k+1)((k+1) + 1)/2
+
+    We have that: 
+        1 + 2 + ... + k + k+1 = k(k+1)/2 + k+1 (By inductive hypothesis)
+                            = (k(k+1) + 2(k+1))/2
+                            = ((k+1)(k+2))/2 
+                            = (k+1)((k+1) + 1)/2
+
+The inductive step holds.
+
+We have shown with induction that our claim holds for any positive integer
 
 
 /////////////////////////////////
@@ -150,18 +182,23 @@ Proof by induction.
 Do you think induction can be used to prove properties for
     ALL integers?
 
+    Must have a smallest value in the domain
+
 
 /////////////////////////////////
 
 Induction template.
 
-1) 
+1) Label Base Case. Prove claim is true for smallest element in your domain
 
 
-2) 
+2) Label the Inductive Step. "Assume the inductive hypothesis - that <insert claim> holds
+    for some fixed k in <insert domain>"
 
 
-3) 
+3) Try to prove for k+1. "We must show that our claim holds for k+1"
+
+4) Summarize. "It follows by induction that <insert claim> holds for all <insert domain>"
 
 /////////////////////////////////
 
@@ -187,12 +224,26 @@ Example: Prove that 3^n - 1 is even for all positive integers n.
 
 
 what does "even" mean? 
-
+    A numeber is even if there exists an integer a such that k = 2a
 
 
 Proof by induction.
 
+Base Case. We must prove that our claim holds for our smallest positive integer n = 1
+    We have that 3^1 - 1 = 3 - 1 = 2. Because 2 = 2*1, and 1 is an integer, we know 2 is even.
+    Base Case Holds
 
+Inductive Step. Assume the inductive hypothesis -- that 3^k - 1 is even for some positive integer k
+    We must show that 3^(k+1) - 1 is even.
+
+    If 3^k - 1 is even, then there exists an integer a such that 2a = 3^k - 1
+
+    We have that:
+        3^k(k+1) - 1 = 3(s^k) - 1
+                     = 3(3^k - 1) - 1 + 3
+                     = 3(2a) + 2 (by inductive hypothesis)
+                     = 2(3a + 1)
+    Thus 
 
 //////////////////////////////////
 
@@ -200,15 +251,38 @@ Bad induction, example 1.
 
 Use induction to prove that in any nonempty set of n horses, all horses are the same color.
 
+Base Case. I have a set of one horse. Of course it is the same color.
+
+Inductive Step. Assume inductive hypothesis, that for some. fixed positive integer k, 
+    that a set of k horses all has the same color
+
+    We must show that a set of k+1 horses all have the same color.
+    
+    Exclude the first horse from our k+! set. We would have k horses left, and 
+    those horses all have the same color by our inductive hypothesis
+
+    Exclude the last horse from our k+1 set. We have k horses left, and those horses all have
+    the same color by our inductive hypothesis.
+
 
 //////////////////////////////////
 
-Bad induction, example 1.
+Bad induction, example 2.
 
 
 Use induction to prove that 8n+3 is even for all positive integers n.
 
 (What happens when we skip the base case?)
+
+We assume inductive hypothesis -- 8k+3 is even for soe fixed positive integer k.
+    We must show that 8(k+1) + 3 is even
+
+    If 8k+3 is even, then there exists an integer a such that 8k+3 = 2a
+
+    We have that:
+        8(k+1) + 3 = 8k + 8 + 3
+                   = 2a + 8 (by inductive hypothesis)
+                   = 2(a + 4)
 
 
 ////////////////////////////////////
