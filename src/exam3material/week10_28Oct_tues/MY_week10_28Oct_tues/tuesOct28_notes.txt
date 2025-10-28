@@ -3,9 +3,22 @@ HW 7 due tonight
 #5, if n is a positive integer, then
     n^5 - n is divisible by 5
 
+What does it mean to be divisible by 5?
+
+An integer x is divisible by 5 if there exists another integer k such that:
+    5k = x
+
+5(something) + 5(something)
+
+--> what would inductive hypothesis be?
+positive integer k, k^5 - k is divisible by 5
 
 
+--> what would we be trying to prove?
 
+That (k+1)^5 - (k+1) is divisible by 5
+
+Suggest expand it out
 
 #6, if n is natural number, then:
 
@@ -42,28 +55,61 @@ Today:
 
 ////////////////////////////////////////////
 
+Induction domino effect (We can assume this is truw)
+
 ( P(1) ∧ ∀ k (P(k) → P(k+1)) ) → ∀ n P(n) 
 
+P(1) : Base case (Prove our claim for smallest value in the domain)
+∀ k (P(k) → P(k+1)) : Inductive step
+    Picked a random individual (Fixed k in our domain)
+    Assume our claim holds for k (inductive hypothesis)
+    ...
+    Try to show that our claim holds for k+1
 
+∀ n P(n)  : Our claim holds for all n in our domain, (What we're trying to prove)
 
 English translation?
+
+IF we can prove the base case
+AND we can prove the inductive step
+THEN we can conclude our claim holds for all n in our domain
 
 ///////////////////////
 
 Example: Prove that the sum of the first n odd numbers is n^2.
 
     (what is our domain?)
-
+    Natural numbers
 
 How can we express the sum of the first n odd numbers more formally?
 
+1 + 3 + 5 + ... + (nth odd number) = n^2
 
 
 So, what is our claim?
 
+That for any natural number n:
+
+1 + 3 + 5 + ... + (2n - 1) = n^2
 
 
 Proof by induction.
+
+Base case. We must prove that our claim holds for first natural number, n = 1
+    (2(1) - 1) = 1^2 -> 1 = 1
+    Base case holds
+
+Inductive Step. Assume inductive hypothesis, 1 + 3 + 5 + ... + (2k - 1) = k^2 for some natural number k
+    Need to prove this for k+1: 
+        1 + 3 + 5 + ... + (2k - 1) + (2(k+1) - 1) = (k+1)^2
+                                                  = k^2 + (2(k+1) - 1)
+                                                  = k^2 + 2k + 2 - 1
+                                                  = k^2 + 2k + 1
+                                                  = (k+1)^2
+Inductive Step holds.
+
+
+We have shown with induction that the sum of the first n odd numbers is n^2
 
 
 ////////////////////////////////
@@ -71,6 +117,20 @@ Proof by induction.
 Example: prove that for all nonnegative integers n:
     2^0 + 2^1 + ... + 2^n = 2^(n+1) - 1
 
+Base case. Must prove that our claim holds for n = 0, which is the smallest nonnegative integer.
+    2^0 = 2^(0+1) - 1 -> 1 = 1
+    Base case holds
+
+Inductive step. Assume inductive hypothesis, 2^0 + 2^1 + ... + 2^k = 2^(k+1) - 1, for some fixed nonnegative integer k
+    We must show  2^0 + 2^1 + ... + 2^k + 2^(k+1) = 2^(k+1+1) - 1 -> 2^(k+2) - 1
+                                                  = 2^(k+1) - 1 + 2^(k+1) (By inductive hypothesis)
+                                                  = 2*(2^(k+1)) - 1
+                                                  = 2^(k+2) - 1
+Inductive step holds.
+
+
+We have shown with induction that for all nonnegative integers n:
+    2^0 + 2^1 + ... + 2^n = 2^(n+1) - 1
 
 /////////////////////////////////
 
@@ -98,7 +158,7 @@ f(1) = 3
 f(n) = 2f(n-1) + 3, for n > 1
 
 
-What is f(3)?
+What is f(3)? 21
 
 
 
@@ -114,10 +174,10 @@ g(n) = n * g(n-1), for n > 1
 
 n  | g(n)
 ---------
-1  | 
-2  | 
-3  | 
-4  | 
+1  | 1
+2  | 2 * g(1) = 2*1 = 2
+3  | 2 * g(2) = 3*2 = 6
+4  | 2 * g(3) = 4*6 = 24
 
 
 
@@ -131,17 +191,21 @@ Write a recursive definition.
 
 Over natural numbers.
 
-Base case?
+Base case? 
+    f(1) = 1
+
 Recursive case?
+    f(n) = f(n-1) + (n-1) , for n > 1
 
 
 
 n | f(n)
 -----------------
-1 | 
-2 | 
-3 | 
-4 | 
+1 | 1
+2 | 2
+3 | 4
+4 | 7
+5 | 11 = 7 + (4) = f(n-1) + (n-1)
 
 
 ////////////////////////////////
@@ -157,6 +221,10 @@ Recursive case: x ∈ S ⋀ y ∈ S → xy ∈ S
 
 --> what are the elements in S?
 
+{1, 2, 4, 8, 16, ...}
+
+In set builder notation:
+    {x : x = 2^k, k ∈ Z, k >= 0}
 
 
 
@@ -164,6 +232,10 @@ Recursive case: x ∈ S ⋀ y ∈ S → xy ∈ S
 ///////////////////////////////
 
 Write a recursive definition for the set S = {1, 3, 5, 7, ...}
+
+Base Case: 1 ∈ S
+
+Recursive case: x ∈ S → x+2 ∈ S
 
 
 
@@ -235,17 +307,32 @@ If our domain is integers and we have the predicate Even(x), how
 would you write this statement in predicate logic?
 
 
-
+∀ x ∀ y (Even(x) ^ Even(y) -> Even(xy))
 
 
 What's the idea of proving this in predicate logic?
 
-
+Pick a random indiv1
+Pick another random indiv2
+Assmume indiv1 is even and indiv2 is even
+...
+Show indiv1*indiv2 is even
 
 
 Direct proof:
 
+Let n and m be even integers. If n is even then there exists an integer k, such that 2k = n.
+If m is even there exists an integer j such that 2j = m. 
+    We have:
+        nm = (2k)(2j)
+           = 2(2kj)
+           = ... 2(something)
 
+    Thus nm = 2a where a is the integer 2kj.
+Therefore nm is even
+
+
+(Want to show nm is even)
 
 
 
@@ -259,10 +346,19 @@ The square of any odd integer is odd.
 
 How can we write this in predicate logic?
 
-
+∀ x (Odd(x) -> Odd(x^2))
 
 Direct proof:
 
+Let n be an odd integer. Then n = 2k + 1, for some integer k. 
+    We have that:
+        n^2 = (2k+1)^2
+            = 4k^2 +4k + 1
+            = 2(2k^2 + 2k) + 1
+
+    Thus n^2 = 2a + 1 where a is the integer 2k^2 + 2k
+
+Therefor n^2 is odd
 
 
 ////////////////////////////////
