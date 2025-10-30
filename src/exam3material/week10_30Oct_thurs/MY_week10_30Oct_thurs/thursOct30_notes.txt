@@ -14,6 +14,17 @@ Example (review).
 
 The sum of two odd numbers is even.
 
+∀ x ∀ y Odd(x) ^ Odd(y) -> Even(x+y)
+
+Let n and m be 2 odd integers. This means n = 2k + 1 for some integer k, and m = 2l + 1
+for some integer l
+    We have:
+        n + m = 2k+1 + 2l+1
+              = 2k + 2l + 2
+              = 2(k + l + 1)
+              = 2(something)
+    Thus n+m = 2a, where a is the integer (k + l + 1)
+Therefore, n+m is even
 
 
 ////////////////////////////////
@@ -27,13 +38,15 @@ Proof by contrapositive
 
 What is the contrapositive of P → Q?
 
-
+¬Q → ¬P 
 
 
 
 Proof by contrapositive template:
 
-
+Assume ¬Q
+...
+Try to get ¬P
 
 
 //////////////////////////////////////////
@@ -43,22 +56,35 @@ Example (contrapositive)
 If x^2 is odd for an integer x, then x is odd.
 
 Think of as P → Q
-    P: ? 
-    Q: ? 
+    P: ? x^2 is odd for an integer x
+    Q: ? then x is odd
 
 Contrapositive? 
 
-
+If x is some integer and x is even, then x^2 is even
 
 
 Try direct proof first.
 
+Assume n^2 is odd for some integer n. Then n^2 = 2k + 1, where k is an integer
+    n^2 = 2k+1
+    (Stuck: don't have a good way of showing sqrt(2k+1) is an int)
 
-
-
+(Want to show n is odd: n = 2m + 1)
 
 Now try contrapositive proof.
 
+If x is some integer and x is even, then x^2 is even
+
+(Proof by Contrapositive)
+
+Assume n is even for some integer n, then n = 2k for some integer k.
+    We have:
+        n^2 = (2k)^2
+            = 4k^2
+            = 2(2k^2)
+    Thus n^2 = 2b where b is the integer 2k^2
+Therefore n^2 is even
 
 --> best to indicate in proof that you are using contrapositive
 
@@ -72,19 +98,19 @@ We want to "prove" that 1 = 2.
 "Proof:"
 Let a and b be two equal positive integers. We have that:
 
-    1) a = b                    (reason?)
+    1) a = b                    (reason?) picked to be equal
 
-    2) a^2 = ab                 (reason?)
+    2) a^2 = ab                 (reason?) multiply both sides by a
 
-    3) a^2 - b^2 = ab - b^2     (reason?)
+    3) a^2 - b^2 = ab - b^2     (reason?) subtract b^2
 
-    4) (a-b)(a+b) = b(a-b)      (reason?)
+    4) (a-b)(a+b) = b(a-b)      (reason?) factored both sides
 
-    5) a+b = b                  (reason?)
+    5) a+b = b                  (reason?) divided both sides by a-b
 
-    6) 2b = b                   (reason?)               
+    6) 2b = b                   (reason?) (a and b picked to be equal)
 
-    7) 2 = 1                    (reason?)
+    7) 2 = 1                    (reason?) (divided both sides by b)
 
 
 
@@ -139,9 +165,19 @@ Example (use proof by contradiction):
 
 If x^2 is even for an integer x, then x is even.
 
-(which template? )  
+(which template? )  2
 
+Assume n^2 is even for some integer n. Then n^2 = 2k for some integer k
+Suppose, for the sake of contradiction, that n is odd. Then n = 2m+1, where
+m is an integer
+    We have:
+        n^2 = (2m+1)^2
+            = 4m^2 + 4m + 1
+            = 2(2m^2 + 2m) + 1
+    Thus n^2 = 2b+1 where b is the integer (2m^2 + 2m), and n^2 is odd.
+    This contradicts with our earlier assumption that n^2 is even.
 
+Therefore n is even.
 
 //////////////////////////
 
@@ -164,8 +200,37 @@ and any number that is not irrational is rational.
 Example: use proof by contradiction to prove that sqrt(2)
 is irrational.
 
-(which template?  )
+(which template?  ) 1 (Just the statement)
 
+Suppose, for the sake of contradiction, then sqrt(2) is rational.
+Thus sqrt(2) = p/q where p and q are integers, and q isn't 0. We pick p and q
+to share no common factors so the p/q is fully reduced 
+
+We have:
+    Squaring both sides of sqrt(2) = p/q, we get:
+    2 = p^2/q^2
+    2q^2 = p^2
+Thus p^2 = 2a where a is the integer q^2, so p^2 is even. Thus from
+our earlier example p is also even. Since p is even, then p = 2b where b
+is an integer.
+
+Substituting p = 2b into our earlier equation, we have:
+
+    2q^2 = (2b)^2
+         = 4b^2
+
+We have 2qq^2 = 4b^2, and we can divide both sides by 2:
+
+    q^2 = 2b^2
+
+Thus q^2 = 2k, where k is the integer b^2, so q^2 is even.
+Again from our earlier example, q is even 
+
+Since p and q are both even, then they both share 2 as a factor.
+Ths contradicts with our earlier assumption that p and q shared
+no common factors
+
+Thus sqrt(2) is irrational.
 
 /////////////////////////////////
 ∀ ∃     ∈ ∉     ∅ ⋂ ⋃ ⊂ ⊆   ⋀ ⋁ ¬ →     ℕ ℤ     ≠ ≤ ≥
@@ -176,11 +241,13 @@ Proofs with sets.
 Prove that A ⊆ B?
     --> how would we express this in predicate logic?
 
+    ∀ x ∈ A → x ∈ B
 
     --> proof template? 
 
+Pick a random individual that they are in A (Write out what that means)
 
-
+Try to show the individual is in b.
 
 
 Prove that A = B?
@@ -192,8 +259,8 @@ Example.
 
 Prove that {x : x = 4k + 2, k ∈ ℤ} ⊆ {x : x = 2a, a ∈ ℤ}
 
-A = {x : x = 4k + 2, k ∈ ℤ}
-B = {x : x = 2a, a ∈ ℤ}
+A = {x : x = 4k + 2, k ∈ ℤ} (All elements 2 bigger than some multiple of 4)
+B = {x : x = 2a, a ∈ ℤ} (all multiples of 2)
 
 A: what elements?  
 
@@ -203,7 +270,14 @@ B: what elements?
 
 Proof that A ⊆ B.
 
+let m ∈ A. THus m = 4k+2 for some integer k,
+    We have:
+        m = 4k+2
+          = 2(2k+1)
 
+    Thus m = 2a where a is the integer 2k+1, and so m ∈ B
+
+...(want m ∈ B)
 
 
 
@@ -212,17 +286,42 @@ Proof that A ⊆ B.
 
 ⋂: means?
 
+A ⋂ B = {x : x ∈ A ^ x ∈ B}
 
 
 Prove that {x : x = 2k, k ∈ ℤ} ⋂ {x : x = 3m, m ∈ ℤ} = {x : x = 6a, a ∈ ℤ}
 
-Let A = {x : x = 2k, k ∈ ℤ} 
-Let B = {x : x = 3m, m ∈ ℤ} 
-Let C = {x : x = 6a, a ∈ ℤ} 
+Let A = {x : x = 2k, k ∈ ℤ} all multiples of 2
+Let B = {x : x = 3m, m ∈ ℤ} all multiples of 3
+Let C = {x : x = 6a, a ∈ ℤ} all multiples of 6
 
+First, we prove that A ⋂ B ⊆ C.
+Let n ∈ A ⋂ B. THen n ∈ A ^ n ∈ B. Since n ∈ A, then n = 2k for some integer k. Since
+n ∈ B, the n = 3m for some integer m
+    We have:
+        n = 4n - 3n
+          = 4(3m) - 3(2k)
+          = 12m - 6k
+          = 6(2m - k)
+    Thus n = 6a where a is the integer, 2m - k
+Therefore n ∈ C
 
+(Goal: n = 6a to show n is in c)
 
+Next we prove C ⊆ A ⋂ B.
 
+Let n ∈ C. Thus n = 6a for some integer a.
+    We have that:
+        n = 6a
+          = 2(3a)
+    Thus n = 2k, where k is the integer 3a, meaning n ∈ A
+
+    We also have:
+        n = 6a
+          = 3(2a)
+    Thus n = 3m, where m is the integer 2a, meaning n ∈ B
+
+Since n is in both A and B then n ∈ A ⋂ B
 
 //////////////////////////////
 
