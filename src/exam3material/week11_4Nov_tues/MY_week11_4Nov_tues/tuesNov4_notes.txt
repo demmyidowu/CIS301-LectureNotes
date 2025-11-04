@@ -42,7 +42,8 @@ of basic programs.
 
 (Why does this matter?)
 
-
+Avionics (Flying, Planes, Helicopters, Spacecraft)
+Medical Software
 
 
 AWS formal methods
@@ -111,11 +112,16 @@ Then: prove program correctness in "auto" mode
 
 ////////////////////////
 
-Preconditions: ?
+Preconditions: Assumptions we need to make about input or parameters in 
+    order to prove correctness
 
 
-Postconditions: ?
+Postconditions: Describe the results of running the code    
+    formaly descrube what we know at end of a function call or
+    at the end of a chunk of code
 
+
+Our goal is to prove code does what it should
 
 /////
 
@@ -145,6 +151,9 @@ assert(some claim)
 How are Logika asserts different from C# (and other languages)?
 
 
+Logika: Checks if we've proved something
+
+Other languages: Actually runs the code and compares values
 
 
 
@@ -201,7 +210,10 @@ var y: Z = 12
 
 //proof block? what would go there?
 
+Deduce(
+    1 (y == 12) by Premise,
 
+)
 
 
 ////
@@ -212,8 +224,8 @@ Algebra* (or Algebra T)
 
     Deduce(
         1 ( x == 2 ) by Premise,
-        2 ( x >= 2 ) by ???,
-        3 ( 4 > 0 ) by ???
+        2 ( x >= 2 ) by Algebra*(1)
+        3 ( 4 > 0 ) by Algebra T
     )
 
 
