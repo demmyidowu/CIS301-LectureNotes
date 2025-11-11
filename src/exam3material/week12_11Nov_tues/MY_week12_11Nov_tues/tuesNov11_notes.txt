@@ -93,23 +93,23 @@ Four steps:
 
 1) What should be done before calling the function?
 
-
+Prove its preconditions using what I am passing as parameters
 
 
 2) What can the function itself do with the preconditions?
 
-
+List the as premises
 
 
 3) What must the function do with the postconditions?
 
-
+Show that they are all true based on the value being returned
 
 
 4) What can the calling code do with the postcondition after
     the function returns? 
 
-
+List them as premises using the parameters they passed and the variable they are using to store the return
 
 
 

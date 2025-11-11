@@ -50,3 +50,7 @@ println("Max between ", a, ", ", b, " and ", c, " is ", max)
 //what assert(s) do we want?
 
 //where do we need to prove the asserts?
+assert(max == a | max == b | max == c)
+assert(max >= a)
+assert(max >= b)
+assert(max >= c)
