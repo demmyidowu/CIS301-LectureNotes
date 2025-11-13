@@ -20,18 +20,26 @@ Recursive functions
 
 if (base case condition) {
     answer = (something)
+
+    //Prove postconditions
 } else {
 
     //what to do here?
 
+    //We must prove the preconditions (requires) for the function
+
     recursive call
 
     //what can we do here?
+    //Use the postconditions (ensures) as premises
 
     answer = (something)
+
+    //prove postconditions
 }
 
 //if we want some postcondition after an if/else, what do we do?
+//answer == something (Maybe this is the postcondition)
 
 return answer
 
@@ -60,8 +68,13 @@ while (condition) {
 
 <-- what do we know here?
 
+Condition is false
+
 <-- why is this more challenging than if-statements?
 
+Need: Loop invariants
+    Should be true before loop begins
+    Should be true at end of each iteration
 
 //////////////////////////////
 
@@ -80,13 +93,14 @@ Steps to proving correctness of a loop:
 1) Prove the invariant is true before the loop begins
 
     (what is this like in mathematical induction?)
-
+        - Like the Base Case
 
 
 2) Assume the invariant is true at the beginning of an iteration.
     Prove the invariant still holds at the end of the iteration.
 
     (what is this like in mathematical induction?)
+        - Like the Inductive Step
 
 
 
