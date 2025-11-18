@@ -22,7 +22,10 @@ def mult(x: Z, y: Z): Z = {
   Deduce(
     1 ( total == 0 ) by Premise, //from assignment
     2 ( i == 0 ) by Premise, //from assignment
-    3 ( total == x*i ) by Algebra*(1,2) //proves invariant before loop
+    3 ( total == x*i ) by Algebra*(1,2), //proves invariant before loop
+    4 ( y >= 0 ) by Premise, //from precondition
+    5 ( i <= y ) by Algebra*(2, 4) //proves 2nd invarient
+
 
     //want: total == x*i
   )
@@ -31,7 +34,8 @@ def mult(x: Z, y: Z): Z = {
     //what goes here?
     Invariant(
       Modifies(i, total),
-      total == x*i
+      total == x*i,
+      i <= y
     )
 
     //don't need this block (won't lose information)
@@ -56,11 +60,14 @@ def mult(x: Z, y: Z): Z = {
       2 ( total == x*Old(i) + x ) by Premise, //from previous blok, i has changed
       3 ( total == x*(i-1) + x ) by Algebra*(1,2),
       4 ( total == x*i - x + x ) by Algebra*(3),
-      5 ( total == x*i ) by Algebra*(4) //proves invariant at end of iteration
+      5 ( total == x*i ) by Algebra*(4), //proves invariant at end of iteration
+      6 ( Old(i) < y ) by Premise, //2nd invarient true at start of iteration
+      7 ( i <= y ) by Algebra*(1, 6)
     )
 
     //prove invariant(s) still true at the end of an iteration
     //want: total == x*i
+    //want: i <= y 
 
     //what should we be able to assert here?
   }
@@ -68,9 +75,11 @@ def mult(x: Z, y: Z): Z = {
   //what do we need here?
   Deduce(
     1 ( !(i != y) ) by Premise, //condition is false
-    2 ( i == y ) by Algebra*(1),
+    2 ( i >= y ) by Algebra*(1),
+    13 ( i <= y ) by Premise, //from 2nd invariant
+    14 ( i == y ) by Algebra*(2, 13),
     3 ( total == x*i ) by Premise, //invariants are true, we are at the end of an iteration
-    4 ( total == x*y ) by Algebra*(2,3)
+    4 ( total == x*y ) by Algebra*(14,3)
   )
 
   //need: total == x*y to prove the postcondition
