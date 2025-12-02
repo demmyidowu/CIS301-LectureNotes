@@ -96,7 +96,7 @@ Suppose "seq" is our sequence
 
 ∀ (0 until seq.size)(k => seq(k) == 0 )
     
-    --> what does this say?
+    --> what does this say? All elements in sequence are 0
 
 
 
@@ -109,19 +109,19 @@ Similarly, can use ∃
 
 ∃ (0 until seq.size)(k => seq(k) == 0 )
 
-    --> what does this say?
+    --> what does this say? One of the elements in seq has been set to 0
 
 ///////////////////////////
 
 Writing function contract for function with a sequence:
 
 - Requires:
-    - Sequence size?
-    - Index parameters?
-- Modifies: when needed?
+    - Sequence size? Have requirements to make sure function code won't cause index out of bounds problem
+    - Index parameters? That they are valid positions in the sequence
+- Modifies: when needed? If the function changes a sequence parameter
 - Ensures:
-    - What to describe about sequence?
-    - What about return values?
+    - What to describe about sequence? The value of every position in the sequence after calling the function
+    - What about return values? Res[Z]
 
 
 
@@ -129,6 +129,7 @@ Writing function contract for function with a sequence:
 
 Use "In(seq)" refers to the state of a sequence at the
     beginning of the function call
+    "seq" means value at end of function call
 
 
 
