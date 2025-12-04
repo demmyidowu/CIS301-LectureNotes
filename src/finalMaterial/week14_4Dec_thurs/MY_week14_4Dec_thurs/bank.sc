@@ -15,17 +15,41 @@ val eliteMin: Z = 1000000 // $1M is the minimum balance for elite members
 )
 
 def deposit(amount: Z): Unit = {
+    Contract(
+        //You should describe how global variables change
+        //Require what is needed about params to not violate global invariants
+        Requires(amount >= 0),
+        Modifies(balance, elite),
+        Ensures(
+            balance == In(balance) + amount
+        )
+    )
+
     //what is an unwritten precondition about the global invariants?
-    //what is an unwritten postcondition about the global invariants?
+    //All the global invariants
+    //balance >= 0,
+    //elite == (balance >= eliteMin)
 
     balance = balance + amount
 
     if (balance >= eliteMin) {
         elite = true
     }
+
+    //what is an unwritten postcondition about the global invariants?
+    //All the global invariants
+    //balance >= 0,
+    //elite == (balance >= eliteMin)
 }
 
 def withdraw(amount: Z): Unit = {
+    Contract(
+        Requires(amount <= balance),
+        Modifies(balance, elite),
+        Ensures(
+            balance == In(balance) - amount
+        )
+    )
     //what is an unwritten precondition about the global invariants?
     //what is an unwritten postcondition about the global invariants?
 

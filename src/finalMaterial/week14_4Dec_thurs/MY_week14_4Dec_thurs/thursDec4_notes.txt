@@ -53,7 +53,7 @@ Example: seqMin.sc
 
 ////////////////////////////
 
-new type: B (bool)
+new type: B (bool) true, false, T, F
 
 Example: containsElem.sc
 
