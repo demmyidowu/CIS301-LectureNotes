@@ -190,6 +190,16 @@ def DoOpposite(Function):
 
 
 Then consider DoOpposite(DoOpposite).
+    Xase1: DoOpposite(DoOpposite) loops forever.
+        Then halt(DoOpposite, DoOpposite) returns true. then
+        DoOpposite(DoOpposite) halted. This is a contradiction 
+        with our assumption that it looped forever
+
+    Case 2: DoOpposite(DoOpposite) halts. Then halt(DoOpposite, DoOpposite) must
+        have returned false. Then DoOpposite(DoOpposite) must have Not halted. This 
+        is another contradiction with our earlier assumption that DoOpposite(DoOpposite) halted
+
+Both cases ended in contradiction, so our origianl assumption that we coud write a halt function is false.
 
 
 
@@ -200,20 +210,22 @@ Review: global invariants.
 If a file has global invariants.
 
 --> when do they need to hold?
-
+    Initially
+    Before each function call
+    At the end of each function call
 
 
 --> how to write function contracts for function that change 
     global variables?
 
 requires?
-
+    Make sure to only allow parameters that wouldn't violate global invariants
 
 modifies?
-
+    Say that it's modifying the global vairbles
 
 ensures?
-
+    How the global variables have changed as a result of the function call
 
 //////////////////////////
 
@@ -228,7 +240,7 @@ Binary search bug.
 
 
 --> what's the problem? how to fix?
-
+    int mid = low + (high - low) / 2
     
 
 

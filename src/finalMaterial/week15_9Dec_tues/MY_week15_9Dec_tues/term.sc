@@ -12,10 +12,10 @@ def mult(x: Z, y: Z): Z = {
     var count: Z = 0
 
     //measure of work? (how many more iterations left?)
-    //initially?
-    //after 1 iteration?
+    //initially? y
+    //after 1 iteration? y-1
 
-    //in general?
+    //in general? y - count
 
     while (count < y) {
         Invariant(
@@ -24,19 +24,32 @@ def mult(x: Z, y: Z): Z = {
             sum == x*count
         )
 
+        //get measure of work: y - count
+
         sum = sum + x
         count = count + 1
 
+        //get measure of work: y - count
+
 
         //measure should decrease with each iteration
-            //does it?
+            //does it? Yes since count increases with each iteration
 
         //when I have no work left, then my loop should be done
-            //is it?
+            //is it? y-count == 0 then y == count. Then loop condition is false
     }
 
     return sum
 }
+
+//We claim that multRec(x, y) will terminate for all non-negative y
+
+//Base Case. multRec(x, 0) terminates, goes to base case (if statement) recursion not call
+
+//Inductive step: Assume inductive hypothesis -- that multRec(x, k) terminates for some non
+//negative integer k. We must prove that multRec(x, k+1) terminates. We know k+1 is at least 1, 
+//so we would go into the else and make the recursive call multRec(x, k+1-1) which is multRec(x, k)
+//which we know terminates by our inductive hypothesis. Thus multRec(x, k+1) will also terminate
 
 def multRec(x: Z, y: Z): Z = {
     Contract(
